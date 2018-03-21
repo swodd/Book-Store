@@ -32,7 +32,7 @@ public class BackendApplication implements CommandLineRunner{
         user1.setUsername("j");
         user1.setPassword(SecurityUtility.passwordEncoder().encode("p"));
         user1.setEmail("JAdams@gmail.com");
-        Set<UserRole> userRoles = new HashSet<>();
+        Set<UserRole> userRoles = new HashSet<UserRole>();
         Role role1 = new Role();
         role1.setRoleId(1);
         role1.setName("ROLE_USER");
