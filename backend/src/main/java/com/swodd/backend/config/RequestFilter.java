@@ -5,6 +5,7 @@
  */
 package com.swodd.backend.config;
 
+import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -24,7 +25,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class RequestFilter {
+public class RequestFilter implements Filter{
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain){
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
