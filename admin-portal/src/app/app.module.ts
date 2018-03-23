@@ -7,6 +7,9 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 
 import 'hammerjs';
@@ -17,13 +20,15 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { LoginService } from './services/login.service';
+import { AddNewBookComponent } from './components/add-new-book/add-new-book.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    AddNewBookComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,8 @@ import { LoginService } from './services/login.service';
     MatToolbarModule,
     MatGridListModule,
     MatInputModule,
+    MatSelectModule,
+    MatSlideToggleModule,
     routing
   ],
   providers: [LoginService],
