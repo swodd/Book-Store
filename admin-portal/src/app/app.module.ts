@@ -9,6 +9,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -50,6 +51,7 @@ import { ViewBookComponent } from './components/view-book/view-book.component';
     MatInputModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatListModule,
     routing
   ],
   providers: [
