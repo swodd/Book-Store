@@ -22,7 +22,9 @@ import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './services/login.service';
 import { AddBookService } from './services/add-book.service';
 import { UploadImageService } from './services/upload-image.service';
+import { GetBookListService } from './services/get-book-list.service';
 import { AddNewBookComponent } from './components/add-new-book/add-new-book.component';
+import { BookListComponent } from './components/book-list/book-list.component';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { AddNewBookComponent } from './components/add-new-book/add-new-book.comp
     AppComponent,
     NavBarComponent,
     LoginComponent,
-    AddNewBookComponent
+    AddNewBookComponent,
+    BookListComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { AddNewBookComponent } from './components/add-new-book/add-new-book.comp
   providers: [
     LoginService,
     AddBookService,
-    UploadImageService
+    UploadImageService,
+    GetBookListService
   ],
   bootstrap: [AppComponent]
 })
