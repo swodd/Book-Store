@@ -28,4 +28,8 @@ export class ViewBookComponent implements OnInit {
     );
   }
 
+  onSelect(book:Book){
+    this.router.navigate(['/editBook', this.book.id]);
+  }
+
 }
