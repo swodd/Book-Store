@@ -10,7 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatListModule} from '@angular/material/list';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 import 'hammerjs';
@@ -26,9 +26,10 @@ import { UploadImageService } from './services/upload-image.service';
 import { GetBookListService } from './services/get-book-list.service';
 import { GetBookService } from './services/get-book.service';
 import { EditBookService } from './services/edit-book.service';
+import { RemoveBookService } from './services/remove-book.service';
 
 import { AddNewBookComponent } from './components/add-new-book/add-new-book.component';
-import { BookListComponent } from './components/book-list/book-list.component';
+import { BookListComponent, DialogResultExampleDialog } from './components/book-list/book-list.component';
 import { ViewBookComponent } from './components/view-book/view-book.component';
 import { EditBookComponent } from './components/edit-book/edit-book.component';
 
@@ -41,7 +42,8 @@ import { EditBookComponent } from './components/edit-book/edit-book.component';
     AddNewBookComponent,
     BookListComponent,
     ViewBookComponent,
-    EditBookComponent
+    EditBookComponent,
+    DialogResultExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -56,6 +58,7 @@ import { EditBookComponent } from './components/edit-book/edit-book.component';
     MatSelectModule,
     MatSlideToggleModule,
     MatListModule,
+    MatDialogModule,
     routing
   ],
   providers: [
@@ -64,8 +67,9 @@ import { EditBookComponent } from './components/edit-book/edit-book.component';
     UploadImageService,
     GetBookListService,
     EditBookService,
-    GetBookService
+    GetBookService,
+    RemoveBookService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,DialogResultExampleDialog]
 })
 export class AppModule { }

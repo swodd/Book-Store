@@ -90,4 +90,10 @@ public class BookResource {
     public Book updateBookPost(@RequestBody Book book){
         return bookService.save(book);
     }
+
+    @RequestMapping(value="/remove", method=RequestMethod.POST)
+    public ResponseEntity remove(@RequestBody String id){
+        bookService.removeOne(Long.parseLong(id));
+        return new ResponseEntity("Remove Success!", HttpStatus.OK);
+    }
 }
