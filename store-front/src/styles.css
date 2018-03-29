@@ -4,8 +4,6 @@
 @import '../node_modules/font-awesome/css/font-awesome.min.css';
 @import './non-responsive.css';
 
-
-
 hr {
     border: none;
     height: 1px;
@@ -48,6 +46,20 @@ mat-slide-toggle {
 .section-headline span {
   background-color: #231F20;
   padding: 5px 22px;
+}
+
+.home-headline {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 24px;
+    color: #fff;
+    margin: auto;
+    text-align: center;
+    margin-top: -13px;
+}
+
+.home-headline span {
+    background-color: #231F20;
+    padding: 5px 22px;
 }
 
 .box {
