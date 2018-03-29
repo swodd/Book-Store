@@ -13,7 +13,7 @@ export class LoginService {
 
   sendCredentials(username: string, password: string){
     let url = this.serverPath + '/token';
-    let encodedCredentials = btoa(usename + ":" + password);
+    let encodedCredentials = btoa(username + ":" + password);
     let basicHeader = "Basic " + encodedCredentials;
     let headers = new Headers({
       'Content-Type' : 'application/x-www-form-urlencoded',
@@ -33,7 +33,7 @@ export class LoginService {
   }
 
   logout(){
-    et url = this.serverPath + '/user/logout';
+    let url = this.serverPath + '/user/logout';
     let headers = new Headers({
       'x-auth-token' : localStorage.getItem('xAuthToken')
     });

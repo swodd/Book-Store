@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {LoginService} from '../../services/login.service';
 import {UserService} from '../../services/user.service';
+import {AppConst} from '../../constants/app-const';
 
 @Component({
   selector: 'app-my-account',
@@ -23,6 +24,7 @@ export class MyAccountComponent implements OnInit {
 
   private emailNotExists: boolean = false;
   private forgetPasswordEmailSent: boolean;
+  private recoverEmail: string;
 
   constructor(
     private loginService: LoginService,
@@ -31,7 +33,7 @@ export class MyAccountComponent implements OnInit {
   ) { }
 
   onLogin(){
-    this.loginService.sendCredential(this.credential.username, this.credential.password).subscribe(
+    this.loginService.sendCredentials(this.credential.username, this.credential.password).subscribe(
       res => {
         console.log(res);
         localStorage.setItem("xAuthToken", res.json().token);
@@ -58,6 +60,7 @@ export class MyAccountComponent implements OnInit {
       },
       error => {
         console.log(error.text());
+        let errorMessage = error.text();
         if(errorMessage==="usernameExists") this.usernameExists = true;
         if(errorMessage==="emailExists") this.emailExists = true;
       }

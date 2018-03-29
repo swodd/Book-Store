@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -8,6 +9,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTabsModule} from '@angular/material/tabs';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import {routing} from './app.routing';
 
 import 'hammerjs';
@@ -30,6 +34,7 @@ import { MyAccountComponent } from './components/my-account/my-account.component
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     MatButtonModule,
     MatCheckboxModule,
     MatToolbarModule,
@@ -39,6 +44,9 @@ import { MyAccountComponent } from './components/my-account/my-account.component
     MatSlideToggleModule,
     MatListModule,
     MatDialogModule,
+    MatTabsModule,
+    BrowserAnimationsModule,
+    FormsModule,
     routing
   ],
   providers: [
