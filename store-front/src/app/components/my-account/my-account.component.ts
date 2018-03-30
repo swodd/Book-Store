@@ -61,9 +61,8 @@ export class MyAccountComponent implements OnInit {
       error => {
         console.log(error.text());
         let errorMessage = error.text();
-        if(errorMessage==="usernameExists") this.usernameExists = true;
-        if(errorMessage==="emailExists") this.emailExists = true;
-      }
+        if(errorMessage==="usernameExists") this.usernameExists=true;
+        if(errorMessage==="emailExists") this.emailExists=true;      }
     );
   }
 
@@ -74,13 +73,12 @@ export class MyAccountComponent implements OnInit {
     this.userService.retrievePassword(this.recoverEmail).subscribe(
       res => {
         console.log(res);
-        this.emailSent = true;
+        this.forgetPasswordEmailSent = true;
       },
       error => {
         console.log(error.text());
         let errorMessage = error.text();
-        if(errorMessage==="usernameExists") this.usernameExists = true;
-        if(errorMessage==="emailExists") this.emailExists = true;
+        if(errorMessage==="Email not found") this.emailNotExists=true;
       }
     );
   }
