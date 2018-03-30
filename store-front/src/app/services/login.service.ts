@@ -17,7 +17,7 @@ export class LoginService {
     let basicHeader = "Basic " + encodedCredentials;
     let headers = new Headers({
       'Content-Type' : 'application/x-www-form-urlencoded',
-      'Authorisation' : basicHeader
+      'Authorization' : basicHeader
     });
 
     return this.http.get(url, {headers: headers});
