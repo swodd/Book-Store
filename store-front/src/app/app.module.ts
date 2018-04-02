@@ -23,6 +23,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { MyAccountComponent } from './components/my-account/my-account.component
     AppComponent,
     HomeComponent,
     NavBarComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,
