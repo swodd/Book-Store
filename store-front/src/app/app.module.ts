@@ -10,6 +10,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import {routing} from './app.routing';
@@ -47,6 +48,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     MatListModule,
     MatDialogModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
     BrowserAnimationsModule,
     FormsModule,
     routing
