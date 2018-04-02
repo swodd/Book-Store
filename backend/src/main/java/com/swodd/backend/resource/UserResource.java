@@ -1,5 +1,6 @@
 package com.swodd.backend.resource;
 
+import com.swodd.backend.config.SecurityConfig;
 import com.swodd.backend.config.SecurityUtility;
 import com.swodd.backend.domain.User;
 import com.swodd.backend.domain.security.Role;
@@ -11,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.access.method.P;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -92,5 +95,56 @@ public class UserResource {
         mailSender.send(newEmail);
 
         return new ResponseEntity("Email sent", HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/updateUserInfo", method=RequestMethod.POST)
+    public ResponseEntity profileInfo(
+            @RequestBody HashMap<String, Object> mapper
+    )throws Exception{
+        int id = (Integer) mapper.get("id");
+        String email = (String) mapper.get("email");
+        String username = (String) mapper.get("username");
+        String firstName = (String) mapper.get("firstName");
+        String lastName = (String) mapper.get("lastName");
+        String newPassword = (String) mapper.get("newPassword");
+        String currentPassword = (String) mapper.get("currentPassword");
+
+        User currentUser = userService.findById(Long.valueOf(id));
+
+        if(currentUser == null){
+            throw new Exception("User not found");
+        }
+
+        if(userService.findByEmail(email) != null){
+            if(userService.findByEmail(email).getId() != currentUser.getId()){
+                return new ResponseEntity("Email not found!", HttpStatus.BAD_REQUEST);
+            }
+        }
+        if(userService.findByUsername(username) != null){
+            if(userService.findByUsername(username).getId() != currentUser.getId()){
+                return new ResponseEntity("Username not found!", HttpStatus.BAD_REQUEST);
+            }
+        }
+
+        SecurityConfig securityConfig = new SecurityConfig();
+
+        if(newPassword != null && !newPassword.isEmpty() && !newPassword.equals("")){
+            BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
+            String dbPassword = currentUser.getPassword();
+            if(currentPassword.equals(dbPassword)){
+                currentUser.setPassword(passwordEncoder.encode(newPassword));
+            }else {
+                return new ResponseEntity("Incorrect current password!", HttpStatus.BAD_REQUEST);
+            }
+        }
+
+        currentUser.setFirstName(firstName);
+        currentUser.setLastName(lastName);
+        currentUser.setUsername(username);
+        currentUser.setEmail(email);
+
+        userService.save(currentUser);
+
+        return new ResponseEntity("Update Success", HttpStatus.OK);
     }
 }
