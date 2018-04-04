@@ -37,14 +37,25 @@ export class UserService {
     return this.http.post(url, JSON.stringify(userInfo), {headers : tokenHeader});
   }
 
-  updateUserInfo(user: User, newPassword: string){
+  getCurrentUser(){
+    let url = this.serverPath + '/user/getCurrentUser';
+
+    let tokenHeader = new Headers({
+      'Content-Type' : 'application/json',
+      'x-auth-token' : localStorage.getItem('xAuthToken')
+    });
+
+    return this.http.get(url, {headers : tokenHeader});
+  }
+
+  updateUserInfo(user: User, newPassword: string, currentPassword: string){
     let url = this.serverPath + "/user/updateUserInfo";
     let userInfo = {
       "id" : user.id,
       "firstName" : user.firstName,
       "lastName" : user.lastName,
-      "userName" : user.username,
-      "currentPassword" : user.password,
+      "username" : user.username,
+      "currentPassword" : currentPassword,
       "email" : user.email,
       "newPassword" : newPassword
     };

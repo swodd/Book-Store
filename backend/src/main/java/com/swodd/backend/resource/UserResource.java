@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -128,23 +129,38 @@ public class UserResource {
 
         SecurityConfig securityConfig = new SecurityConfig();
 
-        if(newPassword != null && !newPassword.isEmpty() && !newPassword.equals("")){
+
             BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
             String dbPassword = currentUser.getPassword();
-            if(currentPassword.equals(dbPassword)){
-                currentUser.setPassword(passwordEncoder.encode(newPassword));
+
+            if(null != currentPassword)
+            if(passwordEncoder.matches(currentPassword, dbPassword)){
+                if(newPassword != null && !newPassword.isEmpty() && !newPassword.equals("")){
+                    currentUser.setPassword(passwordEncoder.encode(newPassword));
+                }
+                    currentUser.setEmail(email);
             }else {
                 return new ResponseEntity("Incorrect current password!", HttpStatus.BAD_REQUEST);
             }
-        }
+
 
         currentUser.setFirstName(firstName);
         currentUser.setLastName(lastName);
         currentUser.setUsername(username);
-        currentUser.setEmail(email);
 
         userService.save(currentUser);
 
         return new ResponseEntity("Update Success", HttpStatus.OK);
+    }
+
+    @RequestMapping("/getCurrentUser")
+    public User getCurrentUser(Principal principal){
+        String username = principal.getName();
+        User user = new User();
+        if(username != null){
+            user = userService.findByUsername(principal.getName());
+        }
+
+        return user;
     }
 }

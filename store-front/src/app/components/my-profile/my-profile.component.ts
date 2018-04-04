@@ -22,6 +22,7 @@ export class MyProfileComponent implements OnInit {
   private updateSuccess: boolean;
   private newPassword: string;
   private incorrectPassword: boolean;
+  private currentPassword: string;
 
   constructor(
     private loginService: LoginService,
@@ -30,7 +31,7 @@ export class MyProfileComponent implements OnInit {
   ) { }
 
   onUpdateUserInfo(){
-    this.userService.updateUserInfo(this.user, this.newPassword).subscribe(
+    this.userService.updateUserInfo(this.user, this.newPassword, this.currentPassword).subscribe(
       res => {
         console.log(res.text());
         this.updateSuccess = true;
@@ -39,6 +40,18 @@ export class MyProfileComponent implements OnInit {
         console.log(error.text());
         let errorMessage = error.text();
         if(errorMessage === "Incorrect current password!")this.incorrectPassword=true;
+      }
+    );
+  }
+
+  getCurrentUser(){
+    this.userService.getCurrentUser().subscribe(
+      res => {
+        this.user = res.json();
+        this.dataFetched = true;
+      },
+      err => {
+        console.log(err);
       }
     );
   }
@@ -54,6 +67,6 @@ export class MyProfileComponent implements OnInit {
         this.router.navigate(['/myAccount']);
       }
     );
+    this.getCurrentUser();
   }
-
 }
