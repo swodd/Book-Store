@@ -131,7 +131,7 @@ export class MyProfileComponent implements OnInit {
     this.userPayment.type = "";
     this.userPayment.expiryMonth = "";
     this.userPayment.expiryYear = "";
-    this.userPayment.useBilling = this.userBilling;
+    this.userPayment.userBilling = this.userBilling;
     this.defaultPaymentSet = false;
   }
 }

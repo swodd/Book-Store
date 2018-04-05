@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AppConst } from '../constants/app-const';
-import { Http, headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { UserPayment } from '../models/user-payment';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class PaymentService {
       'Content-Type' : 'application/json',
       'x-auth-token' : localStorage.getItem("xAuthToken")
     });
-    return this.http.post(url, JSON.stringify(payment), {headers: tokenHeaders});
+    return this.http.post(url, JSON.stringify(payment), {headers: tokenHeader});
   }
 
   getUserPaymentList(){
@@ -26,7 +26,7 @@ export class PaymentService {
       'Content-Type' : 'application/json',
       'x-auth-token' : localStorage.getItem("xAuthToken")
     });
-    return this.http.get(url, {headers: tokenHeaders});
+    return this.http.get(url, {headers: tokenHeader});
   }
 
   removePayment(id: number){
@@ -36,7 +36,7 @@ export class PaymentService {
       'Content-Type' : 'application/json',
       'x-auth-token' : localStorage.getItem("xAuthToken")
     });
-    return this.http.post(url, id, {headers: tokenHeaders});
+    return this.http.post(url, id, {headers: tokenHeader});
   }
 
   setDefaultPayment(id: number){
@@ -46,7 +46,7 @@ export class PaymentService {
       'Content-Type' : 'application/json',
       'x-auth-token' : localStorage.getItem("xAuthToken")
     });
-    return this.http.post(url, id, {headers: tokenHeaders});
+    return this.http.post(url, id, {headers: tokenHeader});
   }
 
 }
