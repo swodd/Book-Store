@@ -27,11 +27,54 @@ export class MyProfileComponent implements OnInit {
   private incorrectPassword: boolean;
   private currentPassword: string;
 
+  private selectedProfileTab: number = 0;
+  private selectedBillingTab: number = 0;
+
+  private userPayment: UserPayment = new UserPayment();
+  private userBilling: UserBilling = new UserBilling();
+  private userPaymentList: UserPayment[] = [];
+  private defaultPaymentSet: boolean;
+  private defaultUserPaymentId: number;
+
   constructor(
     private loginService: LoginService,
     private userService: UserService,
+    private paymentService: PaymentService,
     private router: Router
   ) { }
+
+  selectedBillingChange(val: number){
+    this.selectedBillingTab = val;
+  }
+  onUpdatePayment(payment: UserPayment){
+    this.userPayment = payment;
+    this.userBilling = payment.userBilling;
+    this.selectedBillingTab = 1;
+  }
+
+  onRemovePayment(id: number){
+    this.paymentService.removePayment(id).subscribe(
+      res => {
+        this.getCurrentUser();
+      },
+      error => {
+        console.log(error.text());
+      }
+    );
+  }
+
+  setDefaultPayment(){
+    this.defaultPaymentSet = false;
+    this.paymentService.setDefaultPayment(this.defaultUserPaymentId).subscribe(
+      res => {
+        this.getCurrentUser();
+        this.defaultPaymentSet = true;
+      },
+      error => {
+        console.log(error.text());
+      }
+    );
+  }
 
   onUpdateUserInfo(){
     this.userService.updateUserInfo(this.user, this.newPassword, this.currentPassword).subscribe(
@@ -83,5 +126,12 @@ export class MyProfileComponent implements OnInit {
       }
     );
     this.getCurrentUser();
+
+    this.userBilling.userBillingState = "";
+    this.userPayment.type = "";
+    this.userPayment.expiryMonth = "";
+    this.userPayment.expiryYear = "";
+    this.userPayment.useBilling = this.userBilling;
+    this.defaultPaymentSet = false;
   }
 }
