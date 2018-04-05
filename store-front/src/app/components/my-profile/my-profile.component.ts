@@ -4,6 +4,9 @@ import { UserService } from '../../services/user.service';
 import { LoginService } from '../../services/login.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import { PaymentService } from '../../services/payment.service';
+import { UserPayment } from '../../models/user-payment';
+import { UserBilling } from '../../models/user-billing';
 
 @Component({
   selector: 'app-my-profile',
@@ -52,6 +55,18 @@ export class MyProfileComponent implements OnInit {
       },
       err => {
         console.log(err);
+      }
+    );
+  }
+
+  onNewPayment(){
+    this.paymentService.newPayment(this.userPayment).subscribe(
+      res => {
+        this.getCurrentUser();
+        this.selectedBillingTab = 0;
+      },
+      error => {
+        console.log(error.text());
       }
     );
   }
