@@ -2,11 +2,12 @@ package com.swodd.backend.service.impl;
 
 import com.swodd.backend.domain.UserPayment;
 import com.swodd.backend.repository.UserPaymentRepository;
+import com.swodd.backend.service.UserPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserPaymentServiceImpl {
+public class UserPaymentServiceImpl implements UserPaymentService {
     @Autowired
     private UserPaymentRepository userPaymentRepository;
 
