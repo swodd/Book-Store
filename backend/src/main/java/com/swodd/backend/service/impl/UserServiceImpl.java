@@ -6,10 +6,13 @@
 package com.swodd.backend.service.impl;
 
 import com.swodd.backend.domain.User;
+import com.swodd.backend.domain.UserPayment;
 import com.swodd.backend.domain.security.UserRole;
 import com.swodd.backend.repository.RoleRepository;
 import com.swodd.backend.repository.UserRepository;
 import com.swodd.backend.service.UserService;
+
+import java.util.ArrayList;
 import java.util.Set;
 import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
@@ -44,6 +47,7 @@ public class UserServiceImpl implements UserService{
 	}
 			
 	user.getUserRoles().addAll(userRoles);
+    user.setUserPaymentList(new ArrayList<UserPayment>());
 			
 	localUser = userRepository.save(user);
 		}
