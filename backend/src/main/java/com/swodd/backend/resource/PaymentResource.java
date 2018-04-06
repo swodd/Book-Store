@@ -46,7 +46,7 @@ public class PaymentResource {
     ){
 //		User user = userService.findByUsername(principal.getName());
 
-        userPaymentService.removeById(Long.parseLong(id));
+        userPaymentService.removeById(Long.valueOf(id));
 
         return new ResponseEntity("Payment Removed Successfully!", HttpStatus.OK);
     }
