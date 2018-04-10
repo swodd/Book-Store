@@ -5,8 +5,10 @@ import { LoginService } from '../../services/login.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { PaymentService } from '../../services/payment.service';
+import { ShippingService } from '../../services/shipping.service';
 import { UserPayment } from '../../models/user-payment';
 import { UserBilling } from '../../models/user-billing';
+import { UserShipping } from '../../models/user-shipping';
 
 @Component({
   selector: 'app-my-profile',
@@ -29,6 +31,7 @@ export class MyProfileComponent implements OnInit {
 
   private selectedProfileTab: number = 0;
   private selectedBillingTab: number = 0;
+  private selectedShippingTab: number = 0;
 
   private userPayment: UserPayment = new UserPayment();
   private userBilling: UserBilling = new UserBilling();
@@ -37,12 +40,23 @@ export class MyProfileComponent implements OnInit {
   private defaultUserPaymentId: number;
   private stateList: string[] = [];
 
+  private userShipping: UserShipping = new UserShipping();
+  private userShippingList: UserShipping[] = [];
+
+  private defaultUserShippingId: number;
+  private defaultShippingSet: boolean;
+
   constructor(
     private loginService: LoginService,
     private userService: UserService,
     private paymentService: PaymentService,
+    private shippingService: ShippingService,
     private router: Router
   ) { }
+
+  selectedShippingChange(val: number){
+    this.selectedShippingTab = val;
+  }
 
   selectedBillingChange(val: number){
     this.selectedBillingTab = val;
@@ -120,6 +134,47 @@ export class MyProfileComponent implements OnInit {
         console.log(error.text());
       }
     );
+  }
+
+  onNewShipping(){
+    this.shippingService.newShipping(this.userShipping).subscribe(
+      res => {
+        this.getCurrentUser();
+        this.selectedShippingTab = 0;
+      },
+      error => {
+        console.log(error.text());
+      }
+    );
+  }
+
+  onUpdateShipping(shipping: UserShipping) {
+  	this.userShipping = shipping;
+  	this.selectedShippingTab = 1;
+  }
+
+  onRemoveShipping(id: number) {
+  	this.shippingService.removeShipping(id).subscribe(
+  		res => {
+  			this.getCurrentUser();
+  		},
+  		error => {
+  			console.log(error.text());
+  		}
+  	);
+  }
+
+  setDefaultShipping() {
+  	this.defaultShippingSet = false;
+  	this.shippingService.setDefaultShipping(this.defaultUserShippingId).subscribe(
+  		res => {
+  			this.getCurrentUser();
+  			this.defaultShippingSet = true;
+  		},
+  		error => {
+  			console.log(error.text());
+  		}
+  	);
   }
 
   ngOnInit() {
