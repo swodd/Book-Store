@@ -8,11 +8,9 @@ package com.swodd.backend.service.impl;
 import com.swodd.backend.domain.User;
 import com.swodd.backend.domain.UserBilling;
 import com.swodd.backend.domain.UserPayment;
+import com.swodd.backend.domain.UserShipping;
 import com.swodd.backend.domain.security.UserRole;
-import com.swodd.backend.repository.RoleRepository;
-import com.swodd.backend.repository.UserBillingRepository;
-import com.swodd.backend.repository.UserPaymentRepository;
-import com.swodd.backend.repository.UserRepository;
+import com.swodd.backend.repository.*;
 import com.swodd.backend.service.UserService;
 
 import java.util.ArrayList;
@@ -44,6 +42,9 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserPaymentRepository userPaymentRepository;
+
+	@Autowired
+	private UserShippingRepository userShippingRepository;
 
 	@Transactional
 	public User createUser(User user, Set<UserRole> userRoles) {
@@ -114,6 +115,29 @@ public class UserServiceImpl implements UserService{
 			} else {
 				userPayment.setDefaultPayment(false);
 				userPaymentRepository.save(userPayment);
+			}
+		}
+	}
+
+	@Override
+	public void updateUserShipping(UserShipping userShipping, User user){
+		userShipping.setUser(user);
+		userShipping.setUserShippingDefault(true);
+		user.getUserShippingList().add(userShipping);
+		save(user);
+	}
+
+	@Override
+	public void setUserDefaultShipping(Long userShippingId, User user) {
+		List<UserShipping> userShippingList = (List<UserShipping>) userShippingRepository.findAll();
+
+		for (UserShipping userShipping : userShippingList) {
+			if(userShipping.getId() == userShippingId) {
+				userShipping.setUserShippingDefault(true);
+				userShippingRepository.save(userShipping);
+			} else {
+				userShipping.setUserShippingDefault(false);
+				userShippingRepository.save(userShipping);
 			}
 		}
 	}

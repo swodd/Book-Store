@@ -8,6 +8,7 @@ package com.swodd.backend.service;
 import com.swodd.backend.domain.User;
 import com.swodd.backend.domain.UserBilling;
 import com.swodd.backend.domain.UserPayment;
+import com.swodd.backend.domain.UserShipping;
 import com.swodd.backend.domain.security.UserRole;
 import java.util.Set;
 
@@ -25,4 +26,6 @@ public interface UserService {
     void updateUserPaymentInfo(UserBilling userBilling, UserPayment userPayment, User user);
     void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
     void setUserDefaultPayment(Long userPaymentId, User user);
+    void updateUserShipping(UserShipping userShipping, User user);
+    void setUserDefaultShipping(Long userShippingId, User user);
 }
