@@ -136,6 +136,7 @@ export class MyProfileComponent implements OnInit {
       res => {
         this.getCurrentUser();
         this.selectedBillingTab = 0;
+        this.userPayment = new UserPayment();
       },
       error => {
         console.log(error.text());
@@ -148,6 +149,7 @@ export class MyProfileComponent implements OnInit {
       res => {
         this.getCurrentUser();
         this.selectedShippingTab = 0;
+        this.userShipping = new UserShipping();
       },
       error => {
         console.log(error.text());
