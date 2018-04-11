@@ -110,9 +110,16 @@ export class MyProfileComponent implements OnInit {
       res => {
         this.user = res.json();
         this.userPaymentList = this.user.userPaymentList;
+        this.userShippingList = this.user.userShippingList;
         for (let index in this.userPaymentList) {
   				if(this.userPaymentList[index].defaultPayment) {
   					this.defaultUserPaymentId=this.userPaymentList[index].id;
+  					break;
+  				}
+  			}
+        for (let index in this.userShippingList) {
+  				if(this.userShippingList[index].userShippingDefault) {
+  					this.defaultUserShippingId=this.userShippingList[index].id;
   					break;
   				}
   			}
@@ -200,5 +207,8 @@ export class MyProfileComponent implements OnInit {
     this.userPayment.expiryYear = "";
     this.userPayment.userBilling = this.userBilling;
     this.defaultPaymentSet = false;
+
+    this.userShipping.userShippingState="";
+    this.defaultShippingSet=false;
   }
 }
