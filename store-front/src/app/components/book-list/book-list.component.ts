@@ -46,9 +46,7 @@ export class BookListComponent implements OnInit {
   						console.log(err);
   					}
   				);
-  		}
-  		);
-  	}
+      }
+    });
   }
-
 }

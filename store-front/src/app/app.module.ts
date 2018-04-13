@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import {routing} from './app.routing';
 
 import 'hammerjs';
+import { DataTableModule } from 'angular2-datatable';
 
 import { LoginService } from './services/login.service';
 import { UserService } from './services/user.service';
@@ -56,6 +57,7 @@ import { BookListComponent } from './components/book-list/book-list.component';
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
     FormsModule,
+    DataTableModule,
     routing
   ],
   providers: [
