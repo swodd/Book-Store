@@ -17,6 +17,7 @@ import {routing} from './app.routing';
 
 import 'hammerjs';
 import { DataTableModule } from 'angular2-datatable';
+import { DataFilterPipe } from './components/book-list/data-filter.pipe';
 
 import { LoginService } from './services/login.service';
 import { UserService } from './services/user.service';
@@ -39,7 +40,8 @@ import { BookListComponent } from './components/book-list/book-list.component';
     NavBarComponent,
     MyAccountComponent,
     MyProfileComponent,
-    BookListComponent
+    BookListComponent,
+    DataFilterPipe
   ],
   imports: [
     BrowserModule,

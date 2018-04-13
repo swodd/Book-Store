@@ -1,15 +1,14 @@
-
 <div class="container">
   <div class="row">
-      <div class="col-xs-8">
-          <h2 class="section-headline"><span>My Profile</span></h2>
-      </div>
-      <div class="col-xs-4">
-          <img src="../../../assets/image/logo.png" class="img-responsive right" style="width:400px; z-index:1;" />
-      </div>
-      <img src="../../../assets/image/wood.png" class="img-responsive right" style="position: absolute; margin-top: 90px; z-index: -2;" />
-  </div>
-  <hr style="position: absolute;width:85%; height:6px; background-color: #333; z-index:-1; margin-top: -170px;" />
+    <div class="col-8">
+      <div class="section-headline"><span>My Profile</span></div>
+    </div>
+    <div class="col-4">
+      <img src="../../../assets/image/logo.png" class="img-fluid float-right" style="width:400px; z-index:1; margin-bottom: 25px;" />
+    </div>
+      <img src="../../../assets/image/wood.png" class="img-fluid float-right" style="position: absolute; margin-top: 90px; z-index: -2;" />
+      <hr style="position: absolute; width: 85%; height: 6px; background-color: #333; z-index: -1; margin-top: 84px;"/>
+  
 
   <div class="row">
     <div class="col-md-3"></div>
@@ -26,9 +25,9 @@
                 <div class="col-md-3">
                   <label class="label-control">Rows on page</label>
                   <select class="form-control input-sm" [(ngModel)]="rowsOnPage">
-                    <option [ngVlaue]="5">5</option>
-                    <option [ngVlaue]="10">10</option>
-                    <option [ngVlaue]="15">15</option>
+                    <option [ngValue]="5">5</option>
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="15">15</option>
                   </select>
                 </div>
               </div>
@@ -40,7 +39,7 @@
             <div class="row" style="margin-bottom: 30px;">
               <div class="col-md-3">
                 <a (click)="onSelect(book)" style="cursor:pointer;">
-                  <img class="img-responsive" src="{{serverPath}}/image/book/{{book.id}}.png" />
+                  <img class="img-fluid" src="{{serverPath}}/image/book/{{book.id}}.png" />
                 </a>
               </div>
               <div class="col-md-9">
@@ -61,7 +60,7 @@
         <tfoot>
           <tr>
             <td colspan="5">
-              <mfBoostrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBoostrapPaginator>
+              <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
             </td>
           </tr>
         </tfoot>
