@@ -31,6 +31,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { BookListComponent } from './components/book-list/book-list.component';
+import { BookDetailComponent } from './components/book-detail/book-detail.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { BookListComponent } from './components/book-list/book-list.component';
     MyAccountComponent,
     MyProfileComponent,
     BookListComponent,
-    DataFilterPipe
+    DataFilterPipe,
+    BookDetailComponent
   ],
   imports: [
     BrowserModule,

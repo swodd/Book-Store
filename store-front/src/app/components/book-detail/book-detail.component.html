@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <div class="section-headline"><span>Book Info</span></div>
+    </div>
+    <div class="col-4">
+      <img src="../../../assets/image/logo.png" class="img-fluid float-right" style="width:400px; z-index:1; margin-bottom: 25px;" />
+    </div>
+      <img src="../../../assets/image/wood.png" class="img-fluid float-right" style="position: absolute; margin-top: 90px; z-index: -2;" />
+      <hr style="position: absolute; width: 85%; height: 6px; background-color: #333; z-index: -1; margin-top: 84px;"/>
+  <div class="row">
+      <div class="row" style="margin-top: 120px;">
+          <div class="col-3">
+              <a routerLink="/bookList">Back to book list</a>
+              <br />
+              <img class="img-fluid" src="{{serverPath}}/image/book/{{book.id}}.png" />
+          </div>
+          <div class="col-9">
+            <h3><span *ngIf="addBookSuccess" style="color:forestgreen"><i class="fa fa-check" style="color:forestgreen"></i>Added to cart.</span></h3>
+            <h3><span *ngIf="notEnoughStock" style="color:red">Oops, only <span>{{book.inStockNumber}}</span> In Stock.</span> </h3>
+
+            <h3>{{book.title}}</h3>
+            <div class="row">
+              <div class="col-5">
+                <h5><strong>Author: </strong><span>{{book.author}}</span></h5>
+                <p><strong>Publisher:</strong><span>{{book.publisher}}</span></p>
+                <p><strong>Publication Date:</strong><span>{{book.publicationDate}}</span></p>
+                <p><strong>Language:</strong><span>{{book.language}}</span></p>
+                <p><strong>Category:</strong><span>{{book.category}}</span></p>
+                <p><strong><span>{{book.format}}</span>:</strong> <span>{{book.numberOfPages}}</span> pages</p>
+                <p><strong>ISBN:</strong> <span>{{book.isbn}}</span></p>
+                <p><strong>Shipping Weight:</strong> <span>{{book.shippingWeight}}</span> ounces</p>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
