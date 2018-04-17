@@ -24,6 +24,7 @@ import { UserService } from './services/user.service';
 import { PaymentService } from './services/payment.service';
 import { ShippingService } from './services/shipping.service';
 import { BookService } from './services/book.service';
+import { CartService } from './services/cart.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -32,6 +33,7 @@ import { MyAccountComponent } from './components/my-account/my-account.component
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { BookListComponent } from './components/book-list/book-list.component';
 import { BookDetailComponent } from './components/book-detail/book-detail.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { BookDetailComponent } from './components/book-detail/book-detail.compon
     MyProfileComponent,
     BookListComponent,
     DataFilterPipe,
-    BookDetailComponent
+    BookDetailComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { BookDetailComponent } from './components/book-detail/book-detail.compon
     UserService,
     PaymentService,
     ShippingService,
-    BookService
+    BookService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })
