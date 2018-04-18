@@ -5,10 +5,7 @@
  */
 package com.swodd.backend.service.impl;
 
-import com.swodd.backend.domain.User;
-import com.swodd.backend.domain.UserBilling;
-import com.swodd.backend.domain.UserPayment;
-import com.swodd.backend.domain.UserShipping;
+import com.swodd.backend.domain.*;
 import com.swodd.backend.domain.security.UserRole;
 import com.swodd.backend.repository.*;
 import com.swodd.backend.service.UserService;
@@ -59,7 +56,12 @@ public class UserServiceImpl implements UserService{
 
 			user.getUserRoles().addAll(userRoles);
 
+			ShoppingCart shoppingCart = new ShoppingCart();
+			shoppingCart.setUser(user);
+			user.setShoppingCart(shoppingCart);
+
 			user.setUserPaymentList(new ArrayList<UserPayment>());
+			user.setUserShippingList(new ArrayList<UserShipping>());
 
 			localUser = userRepository.save(user);
 		}
