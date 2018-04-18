@@ -6,6 +6,7 @@ import com.swodd.backend.repository.CartItemRepository;
 import com.swodd.backend.service.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -47,6 +48,7 @@ public class CartItemServiceImpl implements CartItemService {
         return cartItem;
     }
 
+    @Transactional
     public void removeCartItem(CartItem cartItem) {
         bookToCartItemRepository.deleteByCartItem(cartItem);
         cartItemRepository.delete(cartItem);

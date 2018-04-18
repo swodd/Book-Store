@@ -6,6 +6,7 @@ import com.swodd.backend.domain.ShoppingCart;
 import com.swodd.backend.domain.User;
 import com.swodd.backend.service.BookService;
 import com.swodd.backend.service.CartItemService;
+import com.swodd.backend.service.ShoppingCartService;
 import com.swodd.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
